@@ -1,5 +1,5 @@
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (tab.url.startsWith("http://l:" && changeInfo.status === "complete")) {
+    if (tab.url.startsWith("http://l:") && changeInfo.status === "complete") {
         const port = tab.url.slice(9);
         redirectUrl(port);
     } else if (tab.title.startsWith("l:") && changeInfo.status === "complete") {
