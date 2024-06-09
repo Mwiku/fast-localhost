@@ -1,43 +1,16 @@
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    let shortHandUrl = "";
-    console.log(`tab-title stages: ${tab.title}`);
-    console.log(`shorthand-url is: ${shortHandUrl}`);
-    if (changeInfo.status == "loading" && shortHandUrl.length <= 0) {
-        shortHandUrl = tab.title;
-        console.log(`short-hand-url: ${shortHandUrl}`);
-    }
-
-    if (
-        changeInfo.status === "complete" &&
-        tab.url.startsWith("http://l:" || shortHandUrl.length > 0)
-    ) {
-        shortHandUrl = tab.url;
-        console.log(
-            `in redirect tab url: ${tab.url} . title: ${tab.title} . short-hand-url: ${shortHandUrl} `
-        );
-        const url = getRedirectUrl(shortHandUrl);
-        const redirectUrl = url; // Logic to determine redirect URL
-        if (redirectUrl) {
-            chrome.tabs.update(tabId, { url: redirectUrl });
-        }
+    if (tab.url.startsWith("http://l:" && changeInfo.status === "complete")) {
+        const port = tab.url.slice(9);
+        redirectUrl(port);
+    } else if (tab.title.startsWith("l:") && changeInfo.status === "complete") {
+        // This one specifically covers for port 80
+        const port = tab.title.slice(2, 5);
+        redirectUrl(port);
     }
 });
 
-function getRedirectUrl(shortHandUrl) {
-    console.log(`receive url i: ${shortHandUrl}`);
-    let port = "";
-    if (shortHandUrl.startsWith("http://l:")) {
-        port = shortHandUrl.slice(9);
-    } else if (shortHandUrl.startsWith("l:")) {
-        port = shortHandUrl.slice(2);
-    }
-    const redirectUrl = `http://localhost:${port}`;
-    resetShortHandUrl();
-    console.log(`after reset ${shortHandUrl}`);
-    port = "";
-    return redirectUrl;
-}
+function redirectUrl(port) {
+    let redirectUrl = `http://localhost:${port}`;
 
-function resetShortHandUrl() {
-    shortHandUrl = "";
+    chrome.tabs.update({ url: redirectUrl });
 }
