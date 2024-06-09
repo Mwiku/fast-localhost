@@ -1,6 +1,6 @@
 {
     "name": "Fast localhost",
-    "version": "0.0.1-beta",
+    "version": "0.0.1",
     "manifest_version": 3,
     "description": "Devops extension. Quickly go to localhost, especially ideal for developers",
     "icons": {
