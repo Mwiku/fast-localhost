@@ -1,20 +1,20 @@
 {
-    "name": "Fast localhost",
-    "version": "0.0.1",
-    "manifest_version": 3,
-    "description": "Devops extension. Quickly go to localhost, especially ideal for developers",
-    "icons": {
-        "128": "icons/fast-localhost-128.png",
-        "48": "icons/fast-localhost-48.png",
-        "32": "icons/fast-localhost-32.png",
-        "16": "icons/fast-localhost-16.png"
-    },
-    "action": {
-        "default_popup": "popup/popup.html"
-    },
-    "incognito": "spanning",
-    "background": {
-        "service_worker": "background.js"
-    },
-    "permissions": ["tabs", "activeTab"]
+  "name": "Fast localhost",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "description": "Devops extension. Quickly go to localhost, especially ideal for developers",
+  "icons": {
+    "128": "icons/fast-localhost-128.png",
+    "48": "icons/fast-localhost-48.png",
+    "32": "icons/fast-localhost-32.png",
+    "16": "icons/fast-localhost-16.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "incognito": "spanning",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["tabs"]
 }
