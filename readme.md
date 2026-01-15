@@ -8,4 +8,4 @@ At the moment this extension does not collect any user data.
 All processing is done in the browser and no data is transfered anywhere.
 
 Contact Us
-mwizak@zumagroupmw.com
+mwizak@gmail.com
